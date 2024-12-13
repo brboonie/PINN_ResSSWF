@@ -4,5 +4,5 @@ Using Physics-informed neural networks to recontruct sea surface wind field
 Tensorflow 2.0
 ## Dataset
 The data folder contains the data used by the project.
-## code
+## Code
 The main program is located in the code folder, and the rest of the project will be added later.
