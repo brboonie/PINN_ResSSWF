@@ -52,11 +52,6 @@ def load_and_preprocess_data(filepath3, filepath4, filepath5, filet2m,filemsl, n
     U_star_combined = xr.concat([U_star3, U_star4, U_star5], dim='time')
     V_star_combined = xr.concat([V_star3, V_star4, V_star5], dim='time')
 
-    # # 计算 U_star_combined and V_star_combined  的最小值和最大值
-    # U_star_min = U_star_combined.min(skipna=True).item()
-    # U_star_max = U_star_combined.max(skipna=True).item()
-    # V_star_min = V_star_combined.min(skipna=True).item()
-    # V_star_max = V_star_combined.max(skipna=True).item()
 
     # 对 U_star_combined and V_star_combined  进行归一化
     U_star_normalized = normalize(U_star_combined, -17, 17)
@@ -79,15 +74,6 @@ def load_and_preprocess_data(filepath3, filepath4, filepath5, filet2m,filemsl, n
     # 按照 latitude 维度进行排序，msl从小到大排列
     msl_data_sorted = msl_data.sortby('latitude')
 
-
-    # # 常数 R（空气气体常数，单位：J/(kg·K)）
-    # R = 287
-    # # 计算空气密度 rho
-    # rho_dao = -(R * t2m_data_sorted) / msl_data_sorted
-
-
-    Y_star = datamsl['longitude'].values  # X*1
-    X_star = datamsl['latitude'].values  # Y*1
 
     # msl归一化
     msl_star_normalized = normalize(msl_data_sorted, 1007*100,1024*100)
