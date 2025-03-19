@@ -20,15 +20,8 @@ if __name__ == '__main__':
         'Data_Equations': Data_Equations
     })
 
-    # filepath = './PINN_data/cmems_obs-wind_glo_phy_nrt_l3-hy2b-hscat-asc.nc '  # 数据文件路径
-    # # 加载数据
-    # data = xr.open_dataset(filepath,engine='netcdf4')
-    # t_star = data['time'].values  # T*1
-    # Y_star = data['longitude'].values  # X*1
-    # X_star = data['latitude'].values  # Y*1
-    # L_star = data['level'].values  # L*1
 
-    TIME_E = [-5940,-3072, 384, 3072]
+    TIME_E = [-3072, 384, 3072]
     LEVEL_E = 10
     LAT_E = np.arange(-2500000, 2502000, 25000)
     LON_E = np.arange(-2500000, 2502000, 25000)
@@ -79,7 +72,7 @@ if __name__ == '__main__':
 
     predi_flat = predi.reshape(-1, predi.shape[-1])
     # 将预测结果数组转换为 DataFrame
-    predi_df = pd.DataFrame(predi_flat, columns=['u', 'v', 'h', 'w'])
+    predi_df = pd.DataFrame(predi_flat, columns=['u', 'v', 'p', 'w_nouse'])
 
     # 保存 DataFrame 到 CSV 文件
     predi_df.to_csv('./predictions.csv', index=False)
